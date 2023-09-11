@@ -6,11 +6,9 @@ const getFBInfo = require("@xaviabot/fb-downloader");
 
 // functions
 
-async function printFBInfo() {
+async function printFBInfo(video) {
   try {
-    const result = await getFBInfo(
-      "https://www.facebook.com/watch?v=272591278381388"
-    );
+    const result = await getFBInfo(video);
     return result;
     // console.log("Result:", result);
   } catch (error) {
@@ -23,7 +21,9 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/fb", async (req, res) => {
-  const resData = await printFBInfo();
+  const video = req.query.video;
+  // console.log(video);
+  const resData = await printFBInfo(video);
   res.send(resData);
 });
 
