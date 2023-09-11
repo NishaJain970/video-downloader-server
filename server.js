@@ -20,8 +20,8 @@ async function printFBInfo() {
 }
 
 app.get("/", async (req, res) => {
-  const resultData = await printFBInfo();
-  res.send(resultData);
+  // const resultData = await printFBInfo();
+  res.send("Hello");
 });
 
 app.listen(port, () => {
