@@ -27,7 +27,7 @@ app.get("/api/fb", async (req, res) => {
   const video = req.query.video;
   // console.log(video);
   const resData = await printFBInfo(video);
-  res.send(resData);
+  res.json(resData);
 });
 
 app.listen(port, () => {
