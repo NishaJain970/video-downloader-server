@@ -3,6 +3,9 @@ const app = express();
 const port = 3000;
 
 const getFBInfo = require("@xaviabot/fb-downloader");
+const cors = require("cors");
+
+app.use(cors());
 
 // functions
 
