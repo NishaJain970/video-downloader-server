@@ -13,7 +13,6 @@
     "@xaviabot/fb-downloader": "^1.0.14",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "rahad-all-downloader": "^2.1.16",
-    "rahad-media-downloader": "^2.1.14"
+    "ruhend-scraper": "^8.0.0"
   }
 }
