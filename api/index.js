@@ -5,7 +5,7 @@ const port = 3000;
 // Facebook
 const getFBInfo = require("@xaviabot/fb-downloader");
 
-const { alldl } = require("rahad-all-downloader");
+const { igdl } = require("ruhend-scraper");
 
 // CORS Policy
 const cors = require("cors");
@@ -24,23 +24,20 @@ async function printFBInfo(video) {
 
 async function fetchInstagramMedia(url) {
   try {
-    console.log("URL:", url);
-    const data = await alldl(url);
+    let res = await igdl(url);
+    let data = await res.data;
 
-    if (Object.keys(data).length > 0) {
-      if (data?.data?.videoUrl) {
-        const res = {
-          data: [
-            {
-              url: data.data.videoUrl,
-            }
-          ]
-        };
+    if (data.length > 0) {
+      const res = {
+        data: [
+          {
+            url: data[0].url,
+          },
+        ],
+      };
 
-        return res;
-      }
+      return res;
     }
-
   } catch (error) {
     console.error("Bir hata oluştu:", error);
   }
