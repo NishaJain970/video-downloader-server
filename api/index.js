@@ -7,6 +7,7 @@ const getFBInfo = require("@xaviabot/fb-downloader");
 
 // Instagram
 const idl = require("i-downloader");
+const { snapsave } = require('@bochilteam/scraper');
 
 // CORS Policy
 const cors = require("cors");
@@ -22,6 +23,17 @@ async function printFBInfo(video) {
     console.log("Error:", error);
   }
 }
+
+async function fetchInstagramMedia(url) {
+  try {
+    const data = await snapsave(url);
+    const mediaUrls = data.map(item => item.url);
+    console.log(mediaUrls);
+  } catch (error) {
+    console.error('Bir hata oluştu:', error);
+  }
+}
+
 
 // Test API
 app.get("/api", (req, res) => {
@@ -39,7 +51,8 @@ app.get("/api/fb", async (req, res) => {
 // Instagram API
 app.get("/api/insta", async (req, res) => {
   const link = req.query.link;
-  let resData = await idl(link);
+  // let resData = await idl(link);
+  let resData = await fetchInstagramMedia(link);
   res.json(resData);
 });
 
