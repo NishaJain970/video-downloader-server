@@ -5,9 +5,7 @@ const port = 3000;
 // Facebook
 const getFBInfo = require("@xaviabot/fb-downloader");
 
-// Instagram
-const idl = require("i-downloader");
-const { snapsave } = require('@bochilteam/scraper');
+const { alldl } = require("rahad-all-downloader");
 
 // CORS Policy
 const cors = require("cors");
@@ -26,14 +24,27 @@ async function printFBInfo(video) {
 
 async function fetchInstagramMedia(url) {
   try {
-    const data = await snapsave(url);
-    const mediaUrls = data.map(item => item.url);
-    console.log(mediaUrls);
+    console.log("URL:", url);
+    const data = await alldl(url);
+
+    if (Object.keys(data).length > 0) {
+      if (data?.data?.videoUrl) {
+        const res = {
+          data: [
+            {
+              url: data.data.videoUrl,
+            }
+          ]
+        };
+
+        return res;
+      }
+    }
+
   } catch (error) {
-    console.error('Bir hata oluştu:', error);
+    console.error("Bir hata oluştu:", error);
   }
 }
-
 
 // Test API
 app.get("/api", (req, res) => {
